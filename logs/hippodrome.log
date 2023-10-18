@@ -1,0 +1,9 @@
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Bucephalus], speed [2.4]
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Ace of Spades], speed [2.5]
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Zephyr], speed [2.6]
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Blaze], speed [2.7]
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Lobster], speed [2.8]
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Pegasus], speed [2.9]
+2023-10-18 15:33:40 [main] DEBUG Horse - Creation of a Horse, name [Cherry], speed [3.0]
+2023-10-18 15:33:40 [main] DEBUG Hippodrome - Creation of a Hippodrome, count of horses = [7]
+2023-10-18 15:33:40 [main] INFO  Main - Start of race. Number of participants: 7

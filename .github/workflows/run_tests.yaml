@@ -1,0 +1,56 @@
+name: Run tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Run tests with Maven
+        run: mvn --batch-mode --update-snapshots test
+
+      - name: Tests Report 1
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            target/surefire-reports/*.xml
+          report_individual_runs: true
+
+      - name: Tests Report 2
+        uses: dorny/test-reporter@v1
+        if: always()    # run this step even if previous step failed
+        with:
+          name: Tests Report 2           # Name of the check run which will be created
+          path: target/surefire-reports/*.xml    # Path to test results
+          reporter: java-junit        # Format of test results
+
+      - name: Test Report 3
+        uses: mikepenz/action-junit-report@v3
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: 'target/surefire-reports/*.xml'
+
+      - name: Upload test results to testhub.io
+        if: always()
+        uses: testhub-io/testhub-io.action@v0.62
+        with:
+          test_result_pattern: "target/surefire-reports/*.xml"
+          test_coverage_pattern: "target/site/jacoco/jacoco.xml"
+
+      - name: Show logs
+        run: cd logs && ls -R && echo '\n' && grep . *
+        if: always()
